@@ -10,7 +10,6 @@
       <tr>
         <td>
           <p class="lead"><b><i>Time for a change !!</i></b>
-          <p>Out with Boring Prumt - Giving has never been so easy.</p>
           <p>Just click <a href ="/addschedule">here</a> to go to</p>
           <p>The schedules page to start your journey!</p>
         </td>

@@ -1,4 +1,4 @@
-import Api from '@/services/api'
+import Api from '../Services/api'
 
 export default {
 
@@ -9,12 +9,12 @@ export default {
   fetchAllSchedules () {
     return Api().get('/schedule')
   },
-
-  fetchWorkouts () {
-    return Api().get('/donations')
+  postWorkout (schedule) {
+    return Api().post('/schedule', schedule,
+      { headers: {'Content-type': 'application/json'} })
   },
-  postWorkout (workout) {
-    return Api().post('/donations', workout,
+  postProgress (progress) {
+    return Api().post('/progress', progress,
       { headers: {'Content-type': 'application/json'} })
   },
   upvoteDonation (id) {

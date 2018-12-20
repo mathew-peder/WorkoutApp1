@@ -13,6 +13,7 @@
 import Vue from 'vue'
 import VueTables from 'vue-tables-2'
 import workoutservice from '../Services/workoutservice'
+
 Vue.use(VueTables.ClientTable, {compileTemplates: true, filterByColumn: true})
 
 export default {
@@ -20,19 +21,43 @@ export default {
   data () {
     return {
       messagetitle: ' Schedule List ',
-      schedule: [],
+      schedule: [{
+        workout: 'workout',
+        reps: 'reps'
+      }],
       errors: [],
-      columns: ['_id', 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+      columns: ['_id', 'sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'],
       options: {
         headings: {
           _id: 'ID',
-          Sunday: 'Sunday',
-          Monday: 'Monday',
-          Tuesday: 'Tuesday',
-          Wednesday: 'Wednesday',
-          Thursday: 'Thursday',
-          Friday: 'Friday',
-          Saturday: 'Saturday'
+          Sunday: [{
+            workout: 'workout',
+            reps: 'reps'
+          }],
+          Monday: [{
+            workout: 'Workout',
+            reps: 'Reps'
+          }],
+          Tuesday: [{
+            workout: 'Workout',
+            reps: 'Reps'
+          }],
+          Wednesday: [{
+            workout: 'workout',
+            reps: 'reps'
+          }],
+          Thursday: [{
+            workout: 'workout',
+            reps: 'reps'
+          }],
+          Friday: [{
+            workout: 'workout',
+            reps: 'reps'
+          }],
+          Saturday: [{
+            workout: 'workout',
+            reps: 'reps'
+          }]
         }
       }
     }

@@ -22,16 +22,16 @@ export default {
       messagetitle: ' Progress List ',
       progress: [],
       errors: [],
-      columns: ['_id', 'date', 'gender', 'age', 'weight', 'height', 'waist'],
+      columns: ['date', 'gender', 'age', 'weight', 'height', 'waist', '_id'],
       options: {
         headings: {
-          _id: 'ID',
           date: 'Date',
           gender: 'Gender',
           age: 'Age',
           weight: 'Weight',
           height: 'Height',
-          waist: 'Waist'
+          waist: 'Waist',
+          _id: 'ID'
         }
       }
     }
