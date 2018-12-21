@@ -66,13 +66,16 @@ export default {
       weight: '',
       height: '',
       waist: '',
-      submitStatus: null
+      submitStatus: null,
+      errors: []
     }
   },
   validations: {
     date: {
-      required,
-      format: ('2018-10-10')
+      required
+    },
+    gender: {
+      required
     },
     age: {
       required,
@@ -107,22 +110,22 @@ export default {
       console.log('submit!')
       this.$v.$touch()
       if (this.$v.$invalid) {
-        this.submitProgress = 'ERROR'
+        this.submitStatus = 'ERROR'
       } else {
-        // do your submit logic here
-        this.submitProgress = 'PENDING'
+        this.submitStatus = 'PENDING'
         setTimeout(() => {
-          this.submitProgress = 'OK'
+          this.submitStatus = 'OK'
           let progress = {
-            date: '',
-            gender: '',
-            age: '',
-            weight: '',
-            height: '',
-            waist: ''
+            date: this.date,
+            gender: this.gender,
+            age: parseInt(this.age),
+            weight: parseInt(this.weight),
+            height: parseInt(this.height),
+            waist: parseInt(this.waist)
           }
           this.progress = progress
-          console.log('Submitting in DonationForm : ' +
+          this.submitProgress(this.progress)
+          console.log('Submitting in Progress : ' +
               JSON.stringify(this.progress, null, 5))
           this.$emit('progress-is-created-updated', this.progress)
         }, 500)
@@ -134,7 +137,7 @@ export default {
 
 <style scoped>
   #app {
-    width: 95%;
+    width: 70%;
     margin: 0 auto;
   }
   .required-field > label::after {
@@ -143,12 +146,20 @@ export default {
     margin-left: 0.25rem;
   }
 
-  h2, label {
+  h2 {
+    display: inline-block;
+    width: 540px;
+    text-align: center;
+    font-size: x-large;
+  }
+
+  label {
     display: inline-block;
     width: 540px;
     text-align: left;
-    font-size: x-large;
+    font-size: large;
   }
+
   .typo__p {
     width: 540px;
     font-size: x-large;
@@ -167,6 +178,7 @@ export default {
     background: white;
     padding: 5px 10px;
     width: 540px;
+    color: black;
   }
 
   .dirty {

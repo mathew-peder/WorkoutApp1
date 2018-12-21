@@ -20,8 +20,8 @@ export default {
   upvoteDonation (id) {
     return Api().put(`/donations/${id}/vote`)
   },
-  deleteDonation (id) {
-    return Api().delete(`/donations/${id}`)
+  deleteProgress (id) {
+    return Api().delete(`/progress/${id}`)
   },
   fetchDonation (id) {
     return Api().get(`/donations/${id}`)

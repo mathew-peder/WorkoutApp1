@@ -2,7 +2,13 @@
   <div class="hero">
     <h3 class="vue-title"><i class="fa fa-list" style="padding: 3px"></i>{{messagetitle}}</h3>
   <div id="app1">
-    <v-client-table :columns="columns" :data="progress" :options="options">
+    <v-client-table :columns="columns" :data="progress" :options="options" :slot="actions">
+      <span slot="actions" slot-scope={row}>
+          <button class="btn btn-warning btn-sm" v-on:click="editRow(progress.date)">
+            <span class="glyphicon glyphicon-pencil"></span> Edit</button>&nbsp;&nbsp;
+          <button class="btn btn-danger btn-sm" v-on:click="deleteRow(progress.date)">
+            <span class="glyphicon glyphicon-trash"></span> Delete</button>&nbsp;&nbsp;
+      </span>
     </v-client-table>
   </div>
   </div>
@@ -22,7 +28,7 @@ export default {
       messagetitle: ' Progress List ',
       progress: [],
       errors: [],
-      columns: ['date', 'gender', 'age', 'weight', 'height', 'waist', '_id'],
+      columns: ['date', 'gender', 'age', 'weight', 'height', 'waist', '_id', 'actions'],
       options: {
         headings: {
           date: 'Date',
@@ -31,7 +37,8 @@ export default {
           weight: 'Weight',
           height: 'Height',
           waist: 'Waist',
-          _id: 'ID'
+          _id: 'ID',
+          actions: 'Actions'
         }
       }
     }
@@ -52,6 +59,15 @@ export default {
           this.errors.push(error)
           console.log(error)
         })
+    },
+    removeProgress: function () {
+      workoutservice.deleteProgress(progress.id)
+    },
+    editRow (rowData) {
+      alert('You clicked edit on' + JSON.stringify(rowData))
+    },
+    deleteRow (rowData) {
+      alert('You clicked delete on' + JSON.stringify(rowData))
     }
   }
 }

@@ -2,8 +2,11 @@
   <div class="hero">
     <h3 class="vue-title"><i class="fa fa-list" style="padding: 3px"></i>{{messagetitle}}</h3>
   <div id="app1">
-    <v-client-table :columns="columns" :data="schedule" :options="options">
-    </v-client-table>
+    <div class="col-7" v-for="workout in schedule" :key="workout._id">
+      {{workout._id}}
+      {{workout.sunday}}
+      {{workout.monday}}
+  </div>
   </div>
   </div>
 </template>
@@ -21,43 +24,19 @@ export default {
   data () {
     return {
       messagetitle: ' Schedule List ',
-      schedule: [{
-        workout: 'workout',
-        reps: 'reps'
-      }],
+      schedule: [],
       errors: [],
       columns: ['_id', 'sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'],
       options: {
         headings: {
           _id: 'ID',
-          Sunday: [{
-            workout: 'workout',
-            reps: 'reps'
-          }],
-          Monday: [{
-            workout: 'Workout',
-            reps: 'Reps'
-          }],
-          Tuesday: [{
-            workout: 'Workout',
-            reps: 'Reps'
-          }],
-          Wednesday: [{
-            workout: 'workout',
-            reps: 'reps'
-          }],
-          Thursday: [{
-            workout: 'workout',
-            reps: 'reps'
-          }],
-          Friday: [{
-            workout: 'workout',
-            reps: 'reps'
-          }],
-          Saturday: [{
-            workout: 'workout',
-            reps: 'reps'
-          }]
+          sunday: 'Sunday',
+          monday: 'Monday',
+          tuesday: 'Tuesday',
+          wednesday: 'Wednesday',
+          thursday: 'Thursday',
+          friday: 'Friday',
+          saturday: 'Saturday'
         }
       }
     }
