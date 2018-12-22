@@ -7,11 +7,18 @@ import Progress from '../components/Progress'
 import AddProgress from '../components/AddProgress'
 import About from '../components/About'
 import Contact from '../components/Contact'
+import EditProgress from '../components/EditProgress'
 
 Vue.use(Router)
 
 export default new Router({
   routes: [
+    {
+      path: '/editprogress',
+      name: 'EditProgress',
+      component: EditProgress,
+      props: true
+    },
     {
       path: '/',
       name: 'Home',

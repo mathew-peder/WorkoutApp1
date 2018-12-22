@@ -17,19 +17,16 @@ export default {
     return Api().post('/progress', progress,
       { headers: {'Content-type': 'application/json'} })
   },
-  upvoteDonation (id) {
-    return Api().put(`/donations/${id}/vote`)
-  },
   deleteProgress (id) {
     return Api().delete(`/progress/${id}`)
   },
-  fetchDonation (id) {
-    return Api().get(`/donations/${id}`)
+  fetchProgress (id) {
+    return Api().get(`/progress/${id}`)
   },
-  putDonation (id, donation) {
-    console.log('REQUESTING ' + donation._id + ' ' +
-      JSON.stringify(donation, null, 5))
-    return Api().put(`/donations/${id}`, donation,
+  putProgress (id, progress) {
+    console.log('REQUESTING ' + progress._id + ' ' +
+      JSON.stringify(progress, null, 5))
+    return Api().put(`/progress/${id}`, progress,
       { headers: {'Content-type': 'application/json'} })
   }
 }

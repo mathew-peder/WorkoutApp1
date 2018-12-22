@@ -1,12 +1,23 @@
 <template>
   <div class="hero">
     <h3 class="vue-title"><i class="fa fa-list" style="padding: 3px"></i>{{messagetitle}}</h3>
-  <div id="app1">
-    <div class="col-7" v-for="workout in schedule" :key="workout._id">
-      {{workout._id}}
-      {{workout.sunday}}
-      {{workout.monday}}
-  </div>
+    <div id="app1">
+      <v-client-table :columns="columns" :data="schedule" :fields="fields" >
+        <a slot="edit" slot-scope="props" class="fa fa-edit fa-2x" @click="editProgress(props.row._id)"></a>
+        <a slot="remove" slot-scope="props" class="fa fa-trash-o fa-2x" @click="deleteProgress(props.row._id)"></a>
+      </v-client-table>
+    <!--<div id="app1">-->
+    <!--<div class="col-7" v-for="workout in schedule" :key="workout._id">-->
+      <!--{{workout._id}}-->
+      <!--{{workout.sunday}}-->
+      <!--{{workout.monday}}-->
+      <!--{{workout.tuesday}}-->
+      <!--{{workout.wednesday}}-->
+      <!--{{workout.thursday}}-->
+      <!--{{workout.friday}}-->
+      <!--{{workout.saturday}}-->
+    <!--</div>-->
+  <!--</div>-->
   </div>
   </div>
 </template>
@@ -24,20 +35,59 @@ export default {
   data () {
     return {
       messagetitle: ' Schedule List ',
-      schedule: [],
+      schedule: [
+        'sunday.workout', 'sunday.reps',
+        'monday.workout', 'monday.reps',
+        'tuesday.workout', 'tuesday.reps',
+        'wednesday.workout', 'wednesday.reps',
+        'thursday.workout', 'thursday.reps',
+        'friday.workout', 'friday.reps',
+        'saturday.workout', 'saturday.reps'],
       errors: [],
-      columns: ['_id', 'sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'],
+      columns: [
+        '_id',
+        'sunday.workout', 'sunday.reps',
+        'monday.workout', 'monday.reps',
+        'tuesday.workout', 'tuesday.reps',
+        'wednesday.workout', 'wednesday.reps',
+        'thursday.workout', 'thursday.reps',
+        'friday.workout', 'friday.reps',
+        'saturday.workout', 'saturday.reps'
+      ],
       options: {
-        headings: {
-          _id: 'ID',
-          sunday: 'Sunday',
-          monday: 'Monday',
-          tuesday: 'Tuesday',
-          wednesday: 'Wednesday',
-          thursday: 'Thursday',
-          friday: 'Friday',
-          saturday: 'Saturday'
-        }
+        fields:
+        [
+          {
+            'sunday': {
+              workout: 'Workout',
+              reps: 'Reps'
+            },
+            monday: {
+              workout: 'Workout',
+              reps: 'Reps'
+            },
+            tuesday: {
+              workout: 'Workout',
+              reps: 'Reps'
+            },
+            wednesday: {
+              workout: 'Workout',
+              reps: 'Reps'
+            },
+            thursday: {
+              workout: 'Workout',
+              reps: 'Reps'
+            },
+            friday: {
+              workout: 'Workout',
+              reps: 'Reps'
+            },
+            saturday: {
+              workout: 'Workout',
+              reps: 'Reps'
+            }
+          }
+        ]
       }
     }
   },

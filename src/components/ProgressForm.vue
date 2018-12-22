@@ -1,40 +1,40 @@
 <template>
   <div id="app">
-  <h2 class="ui header" id="title">Add Progress</h2>
-  <form @submit.prevent="submit" class="ui form">
-    <div class="six fields">
-      <div class="field" :class="{ 'form-group--error': $v.date.$error }">
-        <label class="label">Date (YYYY-MM-DD)</label>
-        <input class="form__input" v-model.trim="date"/>
+    <h2 class="ui header" id="title">Edit Progress</h2>
+    <form @submit.prevent="submit" class="ui form">
+      <div class="six fields">
+        <div class="field" :class="{ 'form-group--error': $v.date.$error }">
+          <label class="label">Date (YYYY-MM-DD)</label>
+          <input class="form__input" v-model.trim="date"/>
+        </div>
+        <div class="field" :class="{ 'form-group--error': $v.gender.$error }">
+          <label class="label">Gender (M/F/O)</label>
+          <input class="form__input" v-model.trim="gender"/>
+        </div>
+        <div class="field" :class="{ 'form-group--error': $v.age.$error }">
+          <label class="label">Age </label>
+          <input class="form__input" v-model.trim="age"/>
+        </div>
+        <div class="field" :class="{ 'form-group--error': $v.weight.$error }">
+          <label class="label">Weight (kg)</label>
+          <input class="form__input" v-model.trim="weight"/>
+        </div>
+        <div class="field" :class="{ 'form-group--error': $v.height.$error }">
+          <label class="label">Height (cm)</label>
+          <input class="form__input" v-model.trim="height"/>
+        </div>
+        <div class="field" :class="{ 'form-group--error': $v.waist.$error }">
+          <label class="label">Waist (in)</label>
+          <input class="form__input" v-model.trim="waist"/>
+        </div>
       </div>
-      <div class="field" :class="{ 'form-group--error': $v.gender.$error }">
-        <label class="label">Gender (M/F/O)</label>
-        <input class="form__input" v-model.trim="gender"/>
-      </div>
-      <div class="field" :class="{ 'form-group--error': $v.age.$error }">
-        <label class="label">Age </label>
-        <input class="form__input" v-model.trim="age"/>
-      </div>
-      <div class="field" :class="{ 'form-group--error': $v.weight.$error }">
-        <label class="label">Weight (kg)</label>
-        <input class="form__input" v-model.trim="weight"/>
-      </div>
-      <div class="field" :class="{ 'form-group--error': $v.height.$error }">
-        <label class="label">Height (cm)</label>
-        <input class="form__input" v-model.trim="height"/>
-      </div>
-      <div class="field" :class="{ 'form-group--error': $v.waist.$error }">
-        <label class="label">Waist (in)</label>
-        <input class="form__input" v-model.trim="waist"/>
-      </div>
-    </div>
-    <p>
-      <button class="ui positive button" type="submit" :disabled="submitProgress === 'PENDING'">Add Progress</button>
-    </p>
-    <p class="typo__p" v-if="submitStatus === 'OK'">Progress</p>
-    <p class="typo__p" v-if="submitStatus === 'ERROR'">Please Fill in the Form Correctly.</p>
-    <p class="typo__p" v-if="submitStatus === 'PENDING'">Submitting</p>
-  </form>
+      <p>
+        <button class="ui positive button" type="submit" :disabled="submitProgress === 'PENDING'">Add Edit</button>
+      </p>
+      <p class="typo__p" v-if="submitStatus === 'OK'">Progress</p>
+      <p class="typo__p" v-if="submitStatus === 'ERROR'">Please Fill in the Form Correctly.</p>
+      <p class="typo__p" v-if="submitStatus === 'PENDING'">Submitting</p>
+    </form>
   </div>
 </template>
 
@@ -42,7 +42,6 @@
 import Vue from 'vue'
 import VueForm from 'vueform'
 import Vuelidate from 'vuelidate'
-import VueSweetalert from 'vue-sweetalert'
 import { required, between } from 'vuelidate/lib/validators'
 import workoutservice from '../Services/workoutservice'
 
@@ -54,10 +53,9 @@ Vue.use(VueForm, {
 })
 
 Vue.use(Vuelidate)
-Vue.use(VueSweetalert)
 
 export default {
-  name: 'AddProgress',
+  name: 'EditProgress',
   data () {
     return {
       date: '',
@@ -112,6 +110,7 @@ export default {
       if (this.$v.$invalid) {
         this.submitStatus = 'ERROR'
       } else {
+        // do your submit logic here
         this.submitStatus = 'PENDING'
         setTimeout(() => {
           this.submitStatus = 'OK'
@@ -125,7 +124,7 @@ export default {
           }
           this.progress = progress
           this.submitProgress(this.progress)
-          console.log('Submitting in Progress : ' +
+          console.log('Submitting in ProgressForm : ' +
               JSON.stringify(this.progress, null, 5))
           this.$emit('progress-is-created-updated', this.progress)
         }, 500)
@@ -167,6 +166,7 @@ export default {
   button {
     width: 300px;
     font-size: x-large;
+    align-items: center;
   }
   p {
     margin-top: 20px;

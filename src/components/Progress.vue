@@ -2,13 +2,9 @@
   <div class="hero">
     <h3 class="vue-title"><i class="fa fa-list" style="padding: 3px"></i>{{messagetitle}}</h3>
   <div id="app1">
-    <v-client-table :columns="columns" :data="progress" :options="options" :slot="actions">
-      <span slot="actions" slot-scope={row}>
-          <button class="btn btn-warning btn-sm" v-on:click="editRow(progress.date)">
-            <span class="glyphicon glyphicon-pencil"></span> Edit</button>&nbsp;&nbsp;
-          <button class="btn btn-danger btn-sm" v-on:click="deleteRow(progress.date)">
-            <span class="glyphicon glyphicon-trash"></span> Delete</button>&nbsp;&nbsp;
-      </span>
+    <v-client-table :columns="columns" :data="progress" :options="options">
+        <a slot="edit" slot-scope="props" class="fa fa-edit fa-2x" @click="editProgress(props.row._id)"></a>
+        <a slot="remove" slot-scope="props" class="fa fa-trash-o fa-2x" @click="deleteProgress(props.row._id)"></a>
     </v-client-table>
   </div>
   </div>
@@ -27,10 +23,13 @@ export default {
     return {
       messagetitle: ' Progress List ',
       progress: [],
+      props: ['_id'],
       errors: [],
-      columns: ['date', 'gender', 'age', 'weight', 'height', 'waist', '_id', 'actions'],
+      columns: ['_id', 'date', 'gender', 'age', 'weight', 'height', 'waist', 'edit', 'remove'],
       options: {
+        perPage: 10,
         headings: {
+          perPage: 10,
           date: 'Date',
           gender: 'Gender',
           age: 'Age',
@@ -38,7 +37,7 @@ export default {
           height: 'Height',
           waist: 'Waist',
           _id: 'ID',
-          actions: 'Actions'
+          actions: 'actions'
         }
       }
     }
@@ -47,6 +46,7 @@ export default {
   created () {
     this.loadProgress()
   },
+
   methods: {
     loadProgress: function () {
       workoutservice.fetchAllProgress()
@@ -60,14 +60,19 @@ export default {
           console.log(error)
         })
     },
-    removeProgress: function () {
-      workoutservice.deleteProgress(progress.id)
+    editProgress: function (id) {
+      this.$router.params = id
+      this.$router.push('editprogress')
     },
-    editRow (rowData) {
-      alert('You clicked edit on' + JSON.stringify(rowData))
-    },
-    deleteRow (rowData) {
-      alert('You clicked delete on' + JSON.stringify(rowData))
+    deleteProgress: function (id) {
+      workoutservice.deleteProgress(id)
+        .then(response => {
+          this.loadProgress()
+        })
+        .catch(error => {
+          this.errors.push(error)
+          console.log(error)
+        })
     }
   }
 }
