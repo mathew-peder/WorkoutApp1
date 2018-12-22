@@ -5,27 +5,39 @@
       <div class="six fields">
         <div class="field" :class="{ 'form-group--error': $v.date.$error }">
           <label class="label">Date (YYYY-MM-DD)</label>
-          <input class="form__input" v-model.trim="date"/>
+          <label>
+            <input class="form__input" v-model.trim="date"/>
+          </label>
         </div>
         <div class="field" :class="{ 'form-group--error': $v.gender.$error }">
           <label class="label">Gender (M/F/O)</label>
-          <input class="form__input" v-model.trim="gender"/>
+          <label>
+            <input class="form__input" v-model.trim="gender"/>
+          </label>
         </div>
         <div class="field" :class="{ 'form-group--error': $v.age.$error }">
           <label class="label">Age </label>
-          <input class="form__input" v-model.trim="age"/>
+          <label>
+            <input class="form__input" v-model.trim="age"/>
+          </label>
         </div>
         <div class="field" :class="{ 'form-group--error': $v.weight.$error }">
           <label class="label">Weight (kg)</label>
-          <input class="form__input" v-model.trim="weight"/>
+          <label>
+            <input class="form__input" v-model.trim="weight"/>
+          </label>
         </div>
         <div class="field" :class="{ 'form-group--error': $v.height.$error }">
           <label class="label">Height (cm)</label>
-          <input class="form__input" v-model.trim="height"/>
+          <label>
+            <input class="form__input" v-model.trim="height"/>
+          </label>
         </div>
         <div class="field" :class="{ 'form-group--error': $v.waist.$error }">
           <label class="label">Waist (in)</label>
-          <input class="form__input" v-model.trim="waist"/>
+          <label>
+            <input class="form__input" v-model.trim="waist"/>
+          </label>
         </div>
       </div>
       <p>
@@ -42,6 +54,7 @@
 import Vue from 'vue'
 import VueForm from 'vueform'
 import Vuelidate from 'vuelidate'
+import VueSweetalert from 'vue-sweetalert'
 import { required, between } from 'vuelidate/lib/validators'
 import workoutservice from '../Services/workoutservice'
 
@@ -53,6 +66,7 @@ Vue.use(VueForm, {
 })
 
 Vue.use(Vuelidate)
+Vue.use(VueSweetalert)
 
 export default {
   name: 'EditProgress',

@@ -1,40 +1,52 @@
 <template>
   <div id="app">
-  <h2 class="ui header" id="title">Add Progress</h2>
-  <form @submit.prevent="submit" class="ui form">
-    <div class="six fields">
-      <div class="field" :class="{ 'form-group--error': $v.date.$error }">
-        <label class="label">Date (YYYY-MM-DD)</label>
-        <input class="form__input" v-model.trim="date"/>
+    <h2 class="ui header" id="title">Add Progress</h2>
+    <form @submit.prevent="submit" class="ui form">
+      <div class="six fields">
+        <div class="field" :class="{ 'form-group--error': $v.date.$error }">
+          <label class="label">Date (YYYY-MM-DD)</label>
+          <label>
+            <input class="form__input" v-model.trim="date"/>
+          </label>
+        </div>
+        <div class="field" :class="{ 'form-group--error': $v.gender.$error }">
+          <label class="label">Gender (M/F/O)</label>
+          <label>
+            <input class="form__input" v-model.trim="gender"/>
+          </label>
+        </div>
+        <div class="field" :class="{ 'form-group--error': $v.age.$error }">
+          <label class="label">Age </label>
+          <label>
+            <input class="form__input" v-model.trim="age"/>
+          </label>
+        </div>
+        <div class="field" :class="{ 'form-group--error': $v.weight.$error }">
+          <label class="label">Weight (kg)</label>
+          <label>
+            <input class="form__input" v-model.trim="weight"/>
+          </label>
+        </div>
+        <div class="field" :class="{ 'form-group--error': $v.height.$error }">
+          <label class="label">Height (cm)</label>
+          <label>
+            <input class="form__input" v-model.trim="height"/>
+          </label>
+        </div>
+        <div class="field" :class="{ 'form-group--error': $v.waist.$error }">
+          <label class="label">Waist (in)</label>
+          <label>
+            <input class="form__input" v-model.trim="waist"/>
+          </label>
+        </div>
       </div>
-      <div class="field" :class="{ 'form-group--error': $v.gender.$error }">
-        <label class="label">Gender (M/F/O)</label>
-        <input class="form__input" v-model.trim="gender"/>
-      </div>
-      <div class="field" :class="{ 'form-group--error': $v.age.$error }">
-        <label class="label">Age </label>
-        <input class="form__input" v-model.trim="age"/>
-      </div>
-      <div class="field" :class="{ 'form-group--error': $v.weight.$error }">
-        <label class="label">Weight (kg)</label>
-        <input class="form__input" v-model.trim="weight"/>
-      </div>
-      <div class="field" :class="{ 'form-group--error': $v.height.$error }">
-        <label class="label">Height (cm)</label>
-        <input class="form__input" v-model.trim="height"/>
-      </div>
-      <div class="field" :class="{ 'form-group--error': $v.waist.$error }">
-        <label class="label">Waist (in)</label>
-        <input class="form__input" v-model.trim="waist"/>
-      </div>
-    </div>
-    <p>
-      <button class="ui positive button" type="submit" :disabled="submitProgress === 'PENDING'">Add Progress</button>
-    </p>
-    <p class="typo__p" v-if="submitStatus === 'OK'">Progress</p>
-    <p class="typo__p" v-if="submitStatus === 'ERROR'">Please Fill in the Form Correctly.</p>
-    <p class="typo__p" v-if="submitStatus === 'PENDING'">Submitting</p>
-  </form>
+      <p>
+        <button class="ui positive button" type="submit" :disabled="submitProgress === 'PENDING'">Add Progress</button>
+      </p>
+      <p class="typo__p" v-if="submitStatus === 'OK'">Progress Added!</p>
+      <p class="typo__p" v-if="submitStatus === 'ERROR'">Please Fill in the Form Correctly.</p>
+      <p class="typo__p" v-if="submitStatus === 'PENDING'">Submitting</p>
+    </form>
   </div>
 </template>
 
@@ -163,13 +175,16 @@ export default {
   .typo__p {
     width: 540px;
     font-size: x-large;
+    align-items: center;
   }
   button {
     width: 300px;
     font-size: x-large;
+    align-items: center;
   }
   p {
     margin-top: 20px;
+    align-items: center;
   }
 
   input {

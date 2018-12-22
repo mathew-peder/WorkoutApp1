@@ -9,7 +9,7 @@ export default {
   fetchAllSchedules () {
     return Api().get('/schedule')
   },
-  postWorkout (schedule) {
+  postSchedule (schedule) {
     return Api().post('/schedule', schedule,
       { headers: {'Content-type': 'application/json'} })
   },
@@ -19,6 +19,9 @@ export default {
   },
   deleteProgress (id) {
     return Api().delete(`/progress/${id}`)
+  },
+  deleteSchedule (id) {
+    return Api().delete(`/Schedule/${id}`)
   },
   fetchProgress (id) {
     return Api().get(`/progress/${id}`)

@@ -1,16 +1,14 @@
 <template>
   <div id="app1" class="hero">
-    <h3 class="vue-title"><i class="fa fa-money" style="padding: 3px"></i>{{messagetitle}}</h3>
+    <h3 class="vue-title"><i class="fa" style="padding: 3px"></i>{{messagetitle}}</h3>
     <div class="container mt-3 mt-sm-5">
       <div class="row justify-content-center">
-        <div class="col-md-6">
           <template v-if="childDataLoaded">
             <progress-form :progress="progress" progressBtnTitle="Update Progress"
                            @progress-is-created-updated="updateProgress"></progress-form>
           </template>
-        </div><!-- /col -->
-      </div><!-- /row -->
-    </div><!-- /container -->
+      </div>
+    </div>
   </div>
 </template>
 
