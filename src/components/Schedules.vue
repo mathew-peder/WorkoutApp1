@@ -1,3 +1,6 @@
+<!--<Template to print the schedule documents and the data for each day
+Also uses the same edit and delete buttons as the progress.
+>-->
 <template>
   <div class="hero">
     <h3 class="vue-title"><i class="fa fa-list" style="padding: 3px"></i>{{messagetitle}}</h3>
@@ -18,6 +21,9 @@ import workoutservice from '../Services/workoutservice'
 
 Vue.use(VueTables.ClientTable, {compileTemplates: true, filterByColumn: true})
 
+/*
+adds the data from the schedule document to a table with named columns for the day, workout, and reps
+ */
 export default {
   name: 'Schedule',
   data () {
@@ -66,10 +72,16 @@ export default {
       }
     }
   },
-  // Fetches Donations when the component is created.
+  // Fetches Schedule when the component is created.
   created () {
     this.loadSchedules()
   },
+
+  /*
+  Methods to load the schedules from the DB. Workd
+  Delete a schedule. Works
+  Edit a schedule. In progress
+   */
   methods: {
     loadSchedules: function () {
       workoutservice.fetchAllSchedules()

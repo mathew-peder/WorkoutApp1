@@ -1,3 +1,5 @@
+<!--<Adds each oject in the progress document as a form element, allowing text to be added into the form
+Uses validation to ensure the form isn't empty and the right input is used>-->
 <template>
   <div id="app">
     <h2 class="ui header" id="title">Add Progress</h2>
@@ -68,6 +70,9 @@ Vue.use(VueForm, {
 Vue.use(Vuelidate)
 Vue.use(VueSweetalert)
 
+/*
+Adds the objects in the form as empty strings and sets the submit as null until validated
+ */
 export default {
   name: 'AddProgress',
   data () {
@@ -106,6 +111,11 @@ export default {
       between: between(10, 100)
     }
   },
+
+  /*
+Methods to add the data input by the user to the objects in the document as the types they are meant to be and uses
+the PUT function to add it to the database
+ */
   methods: {
     submitProgress: function (progress) {
       workoutservice.postProgress(progress)

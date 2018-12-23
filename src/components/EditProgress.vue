@@ -1,3 +1,6 @@
+<!--<Template for Updating the progress by using a progress form as the format
+Currently only adds extra progresses to the list, Can't figure out where it
+goes wrong>-->
 <template>
   <div id="app1" class="hero">
     <h3 class="vue-title"><i class="fa" style="padding: 3px"></i>{{messagetitle}}</h3>
@@ -16,6 +19,9 @@
 import workoutservice from '../Services/workoutservice'
 import ProgressForm from '../components/ProgressForm'
 
+/*
+Sets the message and the components to be used when editing a progress object.
+ */
 export default {
   data () {
     return {
@@ -31,6 +37,11 @@ export default {
   created () {
     this.getProgress()
   },
+
+  /*
+Sets the methods for getting the progress selected by id and updating the progress by id
+Currently has an issue with updating the selected progress and only adds a new one
+ */
   methods: {
     getProgress: function () {
       workoutservice.fetchProgress(this.$router.params)
@@ -62,7 +73,7 @@ export default {
 </script>
 
 <style scoped>
-  app1 {
+  app {
     width: 70%;
     margin: 0 auto;
   }

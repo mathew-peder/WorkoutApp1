@@ -1,3 +1,6 @@
+<!--<Adds each object in the progress document as a form element, allowing text to be added into the form
+Uses validation to ensure the form isn't empty and the right input is used.
+This code is nearly identical to the add progress>-->
 <template>
   <div id="app">
     <h2 class="ui header" id="title">Edit Progress</h2>
@@ -68,6 +71,12 @@ Vue.use(VueForm, {
 Vue.use(Vuelidate)
 Vue.use(VueSweetalert)
 
+/*
+COMPLETE
+Adds the objects from the document to a table as columns, then adds the data from the document
+under the column names. Also adds the edit and remove functions for the buttons.
+Currently all filtering and searching works for progress.
+ */
 export default {
   name: 'EditProgress',
   data () {

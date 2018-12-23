@@ -1,3 +1,5 @@
+<!--<Adds the workout and reps in each day to a form to be filled out
+Currently does not work>-->
 <template>
   <div id="app">
     <h2 class="ui header" id="title">Add Progress</h2>
@@ -73,6 +75,10 @@ Vue.use(VueForm, {
 Vue.use(Vuelidate)
 Vue.use(VueSweetalert)
 
+/*
+Adding the objects as empty strings ready for input from the user.
+Currently does not work
+ */
 export default {
   name: 'FormData',
   props: ['scheduleBtnTitle', 'schedule'],
@@ -110,6 +116,11 @@ export default {
       submitStatus: null
     }
   },
+
+  /*
+  Methods for adding the user input into the document and then submitting it to the database using PUT
+  The methods work, but this page is still being worked on
+   */
   methods: {
     submitSchedule: function (schedule) {
       workoutservice.postSchedule(schedule)

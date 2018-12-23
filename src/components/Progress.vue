@@ -1,3 +1,6 @@
+<!--<Adds the data from the back end to a table on the front end using columns, ddata and option headings
+Also adds the edit and delete buttons to the end of each progress. The buttons call the delete and edit functions
+These buttons are referenced from the code given in the labs>-->
 <template>
   <div class="hero">
     <h3 class="vue-title"><i class="fa fa-list" style="padding: 3px"></i>{{messagetitle}}</h3>
@@ -17,6 +20,12 @@ import VueTables from 'vue-tables-2'
 import workoutservice from '../Services/workoutservice'
 Vue.use(VueTables.ClientTable, {compileTemplates: true, filterByColumn: true})
 
+/*
+COMPLETE
+Adds the objects from the document to a table as columns, then adds the data from the document
+under the column names. Also adds the edit and remove functions for the buttons.
+Currently all filtering and searching works for progress.
+ */
 export default {
   name: 'Progress',
   data () {
@@ -42,11 +51,19 @@ export default {
       }
     }
   },
-  // Fetches Donations when the component is created.
+
+  /*
+  Fetches Progress when the component is created.
+   */
   created () {
     this.loadProgress()
   },
 
+  /*
+  Methods to load the progress from the database on heroku using fetchAll. Works
+  Delete a progress. Works
+  Edit a progress. Slightly works, but with unintended consequence of adding a new progress
+   */
   methods: {
     loadProgress: function () {
       workoutservice.fetchAllProgress()
